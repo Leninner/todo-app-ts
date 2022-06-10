@@ -1,4 +1,4 @@
-import { Header } from './components/Header'
+import { Background } from './components/Background'
 import { useContext } from 'react'
 import { ThemeContext } from './context/DarkTheme'
 
@@ -7,7 +7,7 @@ function App() {
 
   return (
     <main className={`${isDark ? 'dark' : ''}`}>
-      <Header />
+      <Background />
     </main>
   )
 }
