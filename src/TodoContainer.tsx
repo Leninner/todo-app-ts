@@ -1,7 +1,3 @@
 export const TodoContainer = () => {
-  return (
-    <div className="z-10 w-1/2 h-4/5 bg-primary_checkBackgroundEnd top-16 left-0 right-0 m-auto">
-      AppContainer
-    </div>
-  )
+  return <div className="z-10 w-4/5 h-3/4 md:w-3/4 md:2/3 lg:w-1/2 lg:h-4/5">AppContainer</div>
 }
