@@ -23,6 +23,7 @@ module.exports = {
       dark_darkGrayishBlue: 'hsl(234, 11%, 52%)',
       dark_veryDarkGrayishBlue: 'hsl(233, 14%, 35%)',
       dark_veryDarkGrayishBlue: 'hsl(237, 14%, 26%)',
+      transparent: 'transparent',
     },
     fontFamily: {
       sansSerif: ['Josefin Sans', 'sans-serif'],
