@@ -1,10 +1,16 @@
-import { useContext } from 'react'
-import { ThemeContext } from '../context/DarkTheme'
+import lightImage from '../../images/bg-desktop-light.jpg'
+import darkImage from '../../images/bg-desktop-dark.jpg'
 
-export const Background = () => {
-  const { isDark, toggleTheme }: any = useContext(ThemeContext)
-
+export const Background = ({ isDark }: any) => {
   return (
-    <div className="w-full h-screen dark:bg-slate-800 bg-gray-100 relative flex items-center justify-center"></div>
+    <section className="w-full h-screen dark:bg-dark_veryDarkBlue bg-light_veryLightGray absolute -z-10">
+      <div className="w-full h-2/5">
+        <img
+          src={isDark ? darkImage : lightImage}
+          alt="image"
+          className="object-cover w-full h-full"
+        />
+      </div>
+    </section>
   )
 }
