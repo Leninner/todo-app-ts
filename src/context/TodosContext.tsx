@@ -4,34 +4,23 @@ import { TodoInterface } from '../interfaces'
 export const TodosContext = createContext({})
 
 export const TodosContextProvider = ({ children }: any) => {
-  const [todos, setTodos]: any = useState([
-    {
-      id: 1,
-      text: 'Learn React',
-      completed: false,
-    },
-    {
-      id: 2,
-      text: 'Learn Redux Js',
-      completed: false,
-    },
-    {
-      id: 3,
-      text: 'Learn Next Js',
-      completed: false,
-    },
-    {
-      id: 4,
-      text: 'Learn TypeScript',
-      completed: false,
-    },
-  ])
+  const [todos, setTodos]: any = useState(() => {
+    const todosArray = localStorage.getItem('todos')
+
+    return todosArray ? JSON.parse(todosArray) : []
+  })
 
   const addTodo = (todo: TodoInterface) => {
-    setTodos([...todos, todo])
+    localStorage.setItem('todos', JSON.stringify([...todos, todo]))
+    setTodos([todo, ...todos])
   }
 
   const removeTodo = (id: number) => {
+    localStorage.setItem(
+      'todos',
+      JSON.stringify(todos.filter((todo: TodoInterface) => todo.id !== id))
+    )
+
     setTodos(todos.filter((todo: TodoInterface) => todo.id !== id))
   }
 
