@@ -11,7 +11,7 @@ export const TodosContextProvider = ({ children }: any) => {
   })
 
   const addTodo = (todo: TodoInterface) => {
-    localStorage.setItem('todos', JSON.stringify([...todos, todo]))
+    localStorage.setItem('todos', JSON.stringify([todo, ...todos]))
     setTodos([todo, ...todos])
   }
 
@@ -24,7 +24,19 @@ export const TodosContextProvider = ({ children }: any) => {
     setTodos(todos.filter((todo: TodoInterface) => todo.id !== id))
   }
 
+  const handleCompleteTodo = (id: number) => {
+    const todo = todos.find((todo: TodoInterface) => todo.id === id)
+
+    if (todo) {
+      todo.completed = !todo.completed
+      localStorage.setItem('todos', JSON.stringify(todos))
+      setTodos([...todos])
+    }
+  }
+
   return (
-    <TodosContext.Provider value={{ todos, addTodo, removeTodo }}>{children}</TodosContext.Provider>
+    <TodosContext.Provider value={{ todos, addTodo, removeTodo, handleCompleteTodo }}>
+      {children}
+    </TodosContext.Provider>
   )
 }
