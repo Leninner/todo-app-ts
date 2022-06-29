@@ -6,7 +6,8 @@ export const InputComponent = ({
   text,
   completed,
   onChange,
-  onClick,
+  onComplete,
+  onDelete,
 }: any) => {
   const [isHover, setIsHover] = useState(false)
   const optionsInput = {
@@ -30,12 +31,13 @@ export const InputComponent = ({
           {isHover && (
             <span
               className={`absolute text-4xl dark:text-dark_veryDarkGrayishBlue z-20 right-5 text-light_darkGrayishBlue cursor-pointer`}
+              onClick={onDelete}
             >
               x
             </span>
           )}
 
-          {onClick()}
+          {onComplete()}
         </>
       ) : (
         <div

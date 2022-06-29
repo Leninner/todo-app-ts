@@ -12,16 +12,17 @@ export const TodosContextProvider = ({ children }: any) => {
 
   const addTodo = (todo: TodoInterface) => {
     localStorage.setItem('todos', JSON.stringify([todo, ...todos]))
+
     setTodos([todo, ...todos])
   }
 
   const removeTodo = (id: number) => {
+    setTodos(todos.filter((todo: TodoInterface) => todo.id !== id))
+
     localStorage.setItem(
       'todos',
       JSON.stringify(todos.filter((todo: TodoInterface) => todo.id !== id))
     )
-
-    setTodos(todos.filter((todo: TodoInterface) => todo.id !== id))
   }
 
   const handleCompleteTodo = (id: number) => {

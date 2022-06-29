@@ -4,7 +4,7 @@ import { TodosContext } from '../context/TodosContext'
 import { TodoInterface } from '../interfaces'
 
 export const TodoList = () => {
-  const { todos, handleCompleteTodo }: any = useContext(TodosContext)
+  const { todos, handleCompleteTodo, removeTodo }: any = useContext(TodosContext)
 
   const optionsStyles = {
     className:
@@ -19,7 +19,8 @@ export const TodoList = () => {
           disabled
           {...todo}
           key={todo.id}
-          onClick={() => <BurbujaComponent handleCompleteTodo={handleCompleteTodo} {...todo} />}
+          onComplete={() => <BurbujaComponent handleCompleteTodo={handleCompleteTodo} {...todo} />}
+          onDelete={() => removeTodo(todo.id)}
         />
       ))}
     </section>
