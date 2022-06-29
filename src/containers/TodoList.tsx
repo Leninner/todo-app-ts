@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { InputComponent } from '../components/TodoItems'
 import { TodosContext } from '../context/TodosContext'
 import { TodoInterface } from '../interfaces'
@@ -12,7 +12,7 @@ export const TodoList = () => {
   }
 
   return (
-    <section className="shadow-2xl shadow-light_darkGrayishBlue dark:shadow-dark_veryDarkBlue">
+    <section className="shadow-2xl shadow-light_darkGrayishBlue dark:shadow-dark_veryDarkBlue overflow-auto">
       {todos.map((todo: TodoInterface) => (
         <InputComponent
           optionsStyles={optionsStyles}

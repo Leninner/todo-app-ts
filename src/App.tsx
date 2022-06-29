@@ -8,7 +8,9 @@ function App() {
 
   return (
     <main
-      className={`${isDark ? 'dark' : ''} font-sansSerif h-screen flex items-center justify-center`}
+      className={`${
+        isDark ? 'dark' : ''
+      } font-sansSerif min-h-screen py-10 flex items-center justify-center relative`}
     >
       <Background isDark={isDark} />
       <TodoAppContainer changeTheme={toggleTheme} isDark={isDark} />
