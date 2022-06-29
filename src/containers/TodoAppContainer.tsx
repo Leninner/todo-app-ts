@@ -19,7 +19,8 @@ export const TodoAppContainer = ({ isDark, changeTheme }: any) => {
 }
 
 const Footer = () => {
-  const { todos, clearCompleted }: any = useContext(TodosContext)
+  const { todos, clearCompleted, clickedState, handleSetClickedState }: any =
+    useContext(TodosContext)
 
   const totalCount = todos.reduce((acc: number, curr: TodoInterface) => {
     curr.completed === false ? acc++ : acc
@@ -30,15 +31,33 @@ const Footer = () => {
     <section className="flex items-center justify-between py-3 bg-light_veryLightGray border-t-light_lightGrayishBlue dark:bg-dark_veryDarkDesaturatedBlue dark:border-t-light_veryDarkGrayishBlue w-full border-t px-5 dark:text-light_veryDarkGrayishBlue text-light_darkGrayishBlue">
       <span className="flex-1 cursor-default">{totalCount} items left</span>
 
-      <ul className="flex items-center flex-1 justify-between font-bold">
-        <li className="cursor-pointer hover:text-dark_veryDarkDesaturatedBlue dark:hover:text-light_veryLightGray active:text-primary_brigthBlue">
-          <span>All</span>
+      <ul
+        className="flex items-center flex-1 justify-between font-bold"
+        onClick={handleSetClickedState}
+      >
+        <li
+          className={`cursor-pointer hover:text-dark_veryDarkDesaturatedBlue dark:hover:text-light_veryLightGray 
+        ${clickedState === 'all' && 'text-primary_brigthBlue'}
+        `}
+          data-filter="all"
+        >
+          All
         </li>
-        <li className="cursor-pointer hover:text-dark_veryDarkDesaturatedBlue dark:hover:text-light_veryLightGray active:text-primary_brigthBlue">
-          <span>Active</span>
+        <li
+          className={`cursor-pointer hover:text-dark_veryDarkDesaturatedBlue dark:hover:text-light_veryLightGray 
+        ${clickedState === 'active' && 'text-primary_brigthBlue'}
+        `}
+          data-filter="active"
+        >
+          Active
         </li>
-        <li className="cursor-pointer hover:text-dark_veryDarkDesaturatedBlue dark:hover:text-light_veryLightGray active:text-primary_brigthBlue">
-          <span>Completed</span>
+        <li
+          className={`cursor-pointer hover:text-dark_veryDarkDesaturatedBlue dark:hover:text-light_veryLightGray 
+        ${clickedState === 'completed' && 'text-primary_brigthBlue'}
+        `}
+          data-filter="completed"
+        >
+          Completed
         </li>
       </ul>
 

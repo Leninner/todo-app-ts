@@ -4,7 +4,7 @@ import { TodosContext } from '../context/TodosContext'
 import { TodoInterface } from '../interfaces'
 
 export const TodoList = () => {
-  const { todos, handleCompleteTodo, removeTodo }: any = useContext(TodosContext)
+  const { handleCompleteTodo, removeTodo, filteredTodos }: any = useContext(TodosContext)
 
   const optionsStyles = {
     className:
@@ -13,7 +13,7 @@ export const TodoList = () => {
 
   return (
     <section className=" overflow-auto overscroll-contain h-[20rem] dark:bg-dark_veryDarkDesaturatedBlue">
-      {todos.map((todo: TodoInterface) => (
+      {filteredTodos.map((todo: TodoInterface) => (
         <InputComponent
           optionsStyles={optionsStyles}
           disabled
