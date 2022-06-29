@@ -12,7 +12,7 @@ export const TodoList = () => {
   }
 
   return (
-    <section className="shadow-2xl shadow-light_darkGrayishBlue dark:shadow-dark_veryDarkBlue overflow-auto">
+    <section className=" overflow-auto overscroll-contain h-[20rem] dark:bg-dark_veryDarkDesaturatedBlue">
       {todos.map((todo: TodoInterface) => (
         <InputComponent
           optionsStyles={optionsStyles}

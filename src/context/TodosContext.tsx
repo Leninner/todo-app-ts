@@ -17,11 +17,15 @@ export const TodosContextProvider = ({ children }: any) => {
   }
 
   const removeTodo = (id: number) => {
-    setTodos(todos.filter((todo: TodoInterface) => todo.id !== id))
+    const newTodos = todos.filter((todo: TodoInterface) => todo.id !== id)
+
+    setTodos(newTodos.map((value: TodoInterface, index: number) => ({ ...value, id: index + 1 })))
 
     localStorage.setItem(
       'todos',
-      JSON.stringify(todos.filter((todo: TodoInterface) => todo.id !== id))
+      JSON.stringify(
+        newTodos.map((value: TodoInterface, index: number) => ({ ...value, id: index }))
+      )
     )
   }
 
@@ -35,8 +39,23 @@ export const TodosContextProvider = ({ children }: any) => {
     }
   }
 
+  const clearCompleted = () => {
+    const newTodos = todos.filter((todo: TodoInterface) => !todo.completed)
+
+    setTodos(newTodos.map((value: TodoInterface, index: number) => ({ ...value, id: index + 1 })))
+
+    localStorage.setItem(
+      'todos',
+      JSON.stringify(
+        newTodos.map((value: TodoInterface, index: number) => ({ ...value, id: index }))
+      )
+    )
+  }
+
   return (
-    <TodosContext.Provider value={{ todos, addTodo, removeTodo, handleCompleteTodo }}>
+    <TodosContext.Provider
+      value={{ todos, addTodo, removeTodo, handleCompleteTodo, clearCompleted }}
+    >
       {children}
     </TodosContext.Provider>
   )
