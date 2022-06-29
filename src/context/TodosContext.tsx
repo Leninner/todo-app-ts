@@ -18,6 +18,8 @@ export const TodosContextProvider = ({ children }: any) => {
     return todosArray ? JSON.parse(todosArray) : []
   })
 
+  console.log(filteredTodos)
+
   useEffect(() => {
     const newTodos = todos.filter((todo: TodoInterface) => {
       if (clickedState === 'all') {
@@ -29,9 +31,7 @@ export const TodosContextProvider = ({ children }: any) => {
       }
     })
 
-    setFilteredTodos(
-      newTodos.map((value: TodoInterface, index: number) => ({ ...value, id: index + 1 }))
-    )
+    setFilteredTodos(newTodos)
   }, [clickedState, todos])
 
   const addTodo = (todo: TodoInterface) => {

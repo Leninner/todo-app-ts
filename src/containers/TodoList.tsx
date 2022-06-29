@@ -12,7 +12,7 @@ export const TodoList = () => {
   }
 
   return (
-    <section className=" overflow-auto overscroll-contain h-[20rem] dark:bg-dark_veryDarkDesaturatedBlue">
+    <section className=" overflow-auto overscroll-contain h-[20rem] dark:bg-dark_veryDarkDesaturatedBlue bg-light_veryLightGray">
       {filteredTodos.map((todo: TodoInterface) => (
         <InputComponent
           optionsStyles={optionsStyles}
