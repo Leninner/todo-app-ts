@@ -1,9 +1,9 @@
-import { useContext } from 'react'
+import { useContext, memo, useCallback } from 'react'
 import { InputComponent } from '../components/TodoItems'
 import { TodosContext } from '../context/TodosContext'
 import { TodoInterface } from '../interfaces'
 
-export const TodoList = () => {
+export const TodoList = memo(() => {
   const { handleCompleteTodo, removeTodo, filteredTodos }: any = useContext(TodosContext)
 
   const optionsStyles = {
@@ -15,17 +15,17 @@ export const TodoList = () => {
     <section className=" overflow-auto overscroll-contain h-[20rem] dark:bg-dark_veryDarkDesaturatedBlue bg-light_veryLightGray">
       {filteredTodos.map((todo: TodoInterface) => (
         <InputComponent
-          optionsStyles={optionsStyles}
-          disabled
-          {...todo}
           key={todo.id}
+          {...todo}
           onComplete={() => <BurbujaComponent handleCompleteTodo={handleCompleteTodo} {...todo} />}
           onDelete={() => removeTodo(todo.id)}
+          optionsStyles={optionsStyles}
+          disabled
         />
       ))}
     </section>
   )
-}
+})
 
 const BurbujaComponent = ({ handleCompleteTodo, completed, id }: any) => {
   return (

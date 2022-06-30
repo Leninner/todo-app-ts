@@ -18,8 +18,6 @@ export const TodosContextProvider = ({ children }: any) => {
     return todosArray ? JSON.parse(todosArray) : []
   })
 
-  console.log(filteredTodos)
-
   useEffect(() => {
     const newTodos = todos.filter((todo: TodoInterface) => {
       if (clickedState === 'all') {
